@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import com.expensetracker.expense_tracker.model.Expense;
+import com.expensetracker.expense_tracker.model.ExpenseEntity;
 import com.expensetracker.expense_tracker.repository.ExpenseRepository;
 import com.expensetracker.expense_tracker.validator.ExpenseValidator;
 
@@ -16,26 +16,26 @@ public class ExpenseService {
         this.expenseRepository = expenseRepository;
     }
 
-    public Expense createExpense(Expense expense) {
+    public ExpenseEntity createExpense(ExpenseEntity expense) {
         ExpenseValidator.validateExpense(expense);
         return expenseRepository.save(expense);
     }
 
-    public List<Expense> getAllExpenses() {
-        return (List<Expense>) expenseRepository.findAll();
+    public List<ExpenseEntity> getAllExpenses() {
+        return (List<ExpenseEntity>) expenseRepository.findAll();
     }
 
-    public Optional<Expense> getExpenseById(Long id) {
+    public Optional<ExpenseEntity> getExpenseById(Long id) {
         return expenseRepository.findById(id);
     }
 
-    public Expense updateExpense(Long id, Expense expenseDetails) {
+    public ExpenseEntity updateExpense(Long id, ExpenseEntity expenseDetails) {
         ExpenseValidator.validateExpense(expenseDetails);
 
-        Optional<Expense> optionalExpense = expenseRepository.findById(id);
+        Optional<ExpenseEntity> optionalExpense = expenseRepository.findById(id);
 
         if (optionalExpense.isPresent()) {
-            Expense existingExpense = optionalExpense.get();
+            ExpenseEntity existingExpense = optionalExpense.get();
 
             existingExpense.setDescription(expenseDetails.getDescription());
             existingExpense.setAmount(expenseDetails.getAmount());

@@ -1,10 +1,10 @@
 package com.expensetracker.expense_tracker.validator;
 
-import com.expensetracker.expense_tracker.model.Expense;
+import com.expensetracker.expense_tracker.model.ExpenseEntity;
 import com.expensetracker.expense_tracker.model.ExpenseCategory;
 
 public class ExpenseValidator {
-    public static void validateExpense(Expense expense) {
+    public static void validateExpense(ExpenseEntity expense) {
         if (expense.getAmount() == null || expense.getAmount() <= 0) {
             throw new IllegalArgumentException("Amount must be greater than zero.");
         }

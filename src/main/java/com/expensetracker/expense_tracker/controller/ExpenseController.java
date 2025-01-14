@@ -3,7 +3,7 @@ package com.expensetracker.expense_tracker.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expensetracker.expense_tracker.model.Expense;
+import com.expensetracker.expense_tracker.model.ExpenseEntity;
 import com.expensetracker.expense_tracker.service.ExpenseService;
 
 import java.util.List;
@@ -27,28 +27,28 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
-        Expense createdExpense = expenseService.createExpense(expense);
+    public ResponseEntity<ExpenseEntity> createExpense(@RequestBody ExpenseEntity expense) {
+        ExpenseEntity createdExpense = expenseService.createExpense(expense);
         return new ResponseEntity<>(createdExpense, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Expense>> getAllExpenses() {
-        List<Expense> expenses = expenseService.getAllExpenses();
+    public ResponseEntity<List<ExpenseEntity>> getAllExpenses() {
+        List<ExpenseEntity> expenses = expenseService.getAllExpenses();
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id) {
+    public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable Long id) {
         return expenseService.getExpenseById(id)
                 .map(expense -> new ResponseEntity<>(expense, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody Expense expenseDetails) {
+    public ResponseEntity<ExpenseEntity> updateExpense(@PathVariable Long id, @RequestBody ExpenseEntity expenseDetails) {
         try {
-            Expense updatedExpense = expenseService.updateExpense(id, expenseDetails);
+            ExpenseEntity updatedExpense = expenseService.updateExpense(id, expenseDetails);
             return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

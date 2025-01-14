@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "expense")
 
-public class Expense {
+public class ExpenseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +27,7 @@ public class Expense {
     @Enumerated(EnumType.STRING)
     private ExpenseCategory category;
 
-    public Expense() {}
+    public ExpenseEntity() {}
 
     public String getDescription() {
         return description;
