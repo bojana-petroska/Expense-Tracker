@@ -4,7 +4,7 @@ import com.expensetracker.expense_tracker.model.ExpenseEntity;
 import com.expensetracker.expense_tracker.model.ExpenseCategory;
 
 public class ExpenseValidator {
-    public static void validateExpense(ExpenseEntity expense) {
+    public void validateExpense(ExpenseEntity expense) {
         if (expense.getAmount() == null || expense.getAmount() <= 0) {
             throw new IllegalArgumentException("Amount must be greater than zero.");
         }
@@ -18,7 +18,7 @@ public class ExpenseValidator {
         }
     }
 
-    private static boolean isValidCategory(String category) {
+    private boolean isValidCategory(String category) {
         for (ExpenseCategory validCategory : ExpenseCategory.values()) {
             if (validCategory.name().equalsIgnoreCase(category)) {
                 return true;

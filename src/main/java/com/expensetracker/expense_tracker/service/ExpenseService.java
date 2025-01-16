@@ -17,7 +17,8 @@ public class ExpenseService {
     }
 
     public ExpenseEntity createExpense(ExpenseEntity expense) {
-        ExpenseValidator.validateExpense(expense);
+        ExpenseValidator expenseValidator = new ExpenseValidator();
+        expenseValidator.validateExpense(expense);
         return expenseRepository.save(expense);
     }
 
@@ -30,7 +31,8 @@ public class ExpenseService {
     }
 
     public ExpenseEntity updateExpense(Long id, ExpenseEntity expenseDetails) {
-        ExpenseValidator.validateExpense(expenseDetails);
+        ExpenseValidator expenseValidator = new ExpenseValidator();
+        expenseValidator.validateExpense(expenseDetails);
 
         Optional<ExpenseEntity> optionalExpense = expenseRepository.findById(id);
 
