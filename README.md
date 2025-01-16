@@ -14,7 +14,7 @@ ____
 ***Expense Management***
 
 - Add, update, delete expenses.
-- Categorize expenses (e.g., food, transport, utilities).
+- Categorize expenses.
 - Include descriptions and timestamps.
 
 ***Reports***
