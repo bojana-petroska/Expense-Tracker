@@ -8,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "expense")
@@ -18,8 +21,11 @@ public class ExpenseEntity {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Description cannot be blank")
     private String description;
 
+    @NotNull(message = "Amount must be provided")
+    @DecimalMin(value = "0.01", message = "Amount must be greater than zero")
     @Column(nullable = false)
     private Double amount;
 
@@ -27,7 +33,16 @@ public class ExpenseEntity {
     @Enumerated(EnumType.STRING)
     private ExpenseCategory category;
 
-    public ExpenseEntity() {}
+    public ExpenseEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;
