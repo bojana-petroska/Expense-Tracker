@@ -1,8 +1,0 @@
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/ExpenseTrackerApplication.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/controller/ExpenseController.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/controller/HomeController.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/model/Expense.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/model/ExpenseCategory.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/repository/ExpenseRepository.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/service/ExpenseService.java
-/Users/bojanapetroska/my apps/Expense-Tracker/src/main/java/com/expensetracker/expense_tracker/validator/ExpenseValidator.java
