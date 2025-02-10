@@ -33,8 +33,6 @@ ___
   
 ## Endpoints
 
-Method	Endpoint	Description
-
 <table>
   <thead>
     <tr style="background-color: #f5f5f5; color: #ff5722;">
