@@ -1,52 +1,46 @@
 package com.expensetracker.expense_tracker.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "expense")
+@Document(collection = "expenses")
 
 public class ExpenseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @Column(nullable = false)
     @NotBlank(message = "Description cannot be blank")
     private String description;
 
     @NotNull(message = "Amount must be provided")
     @DecimalMin(value = "0.01", message = "Amount must be greater than zero")
-    @Column(nullable = false)
     private Double amount;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Category must be provided")
     private ExpenseCategory category;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    private String userId;
 
     public ExpenseEntity() {
     }
 
-    public Long getId() {
+    public ExpenseEntity(String description, Double amount, ExpenseCategory category, String userId) {
+        this.description = description;
+        this.amount = amount;
+        this.category = category;
+        this.userId = userId;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,11 +68,11 @@ public class ExpenseEntity {
         this.category = category;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public String getUser() {
+        return userId;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setUser(String userId) {
+        this.userId = userId;
     }
 }

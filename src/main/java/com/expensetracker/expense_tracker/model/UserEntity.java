@@ -3,43 +3,30 @@ package com.expensetracker.expense_tracker.model;
 import java.sql.Date;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
 
-@Entity
-@Table(name = "users")
+@Document(collection = "users")
 
 public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotBlank(message = "Name cannot be blank")
-    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
     @Email(message = "Invalid email format")
+    @NotBlank(message = "Email must be provided")
     private String email;
 
     @NotBlank(message = "Password cannot be blank")
-    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Date cannot be blank")
     private Date registrationDate;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExpenseEntity> expenses;
+    private List<String> expenseIds;
 
     public UserEntity() {
     }
@@ -51,8 +38,12 @@ public class UserEntity {
         this.registrationDate = registrationDate;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -87,11 +78,11 @@ public class UserEntity {
         this.registrationDate = registrationDate;
     }
 
-    public List<ExpenseEntity> getExpense() {
-        return expenses;
+    public List<String> getExpenseIds() {
+        return expenseIds;
     }
 
-    public void setExpenses(List<ExpenseEntity> expenses) {
-        this.expenses = expenses;
+    public void setExpenseIds(List<String> expenseIds) {
+        this.expenseIds = expenseIds;
     }
 }
