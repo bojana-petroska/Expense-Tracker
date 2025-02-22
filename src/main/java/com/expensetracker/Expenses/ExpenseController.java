@@ -1,10 +1,7 @@
-package com.expensetracker.expense_tracker.controller;
+package com.expensetracker.Expenses;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.expensetracker.expense_tracker.model.ExpenseEntity;
-import com.expensetracker.expense_tracker.service.ExpenseService;
 
 import jakarta.validation.Valid;
 
@@ -41,14 +38,14 @@ public class ExpenseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable Long id) {
+    public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable String id) {
         return expenseService.getExpenseById(id)
                 .map(expense -> new ResponseEntity<>(expense, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExpenseEntity> updateExpense(@PathVariable Long id, @RequestBody ExpenseEntity expenseDetails) {
+    public ResponseEntity<ExpenseEntity> updateExpense(@PathVariable String id, @RequestBody ExpenseEntity expenseDetails) {
         try {
             ExpenseEntity updatedExpense = expenseService.updateExpense(id, expenseDetails);
             return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
@@ -58,7 +55,7 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteExpense(@PathVariable String id) {
         try {
             expenseService.deleteExpense(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

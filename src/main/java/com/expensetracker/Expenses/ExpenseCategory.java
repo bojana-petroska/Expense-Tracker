@@ -1,4 +1,4 @@
-package com.expensetracker.expense_tracker.model;
+package com.expensetracker.Expenses;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

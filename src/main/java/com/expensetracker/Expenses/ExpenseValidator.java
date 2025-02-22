@@ -1,7 +1,4 @@
-package com.expensetracker.expense_tracker.validator;
-
-import com.expensetracker.expense_tracker.model.ExpenseEntity;
-import com.expensetracker.expense_tracker.model.ExpenseCategory;
+package com.expensetracker.Expenses;
 
 public class ExpenseValidator {
     public void validateExpense(ExpenseEntity expense) {

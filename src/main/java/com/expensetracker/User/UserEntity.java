@@ -1,4 +1,6 @@
-package com.expensetracker.expense_tracker.model;
+package com.expensetracker.User;
+
+import jakarta.persistence.Id;
 
 import java.sql.Date;
 import java.util.List;
@@ -11,6 +13,7 @@ import jakarta.validation.constraints.Email;
 @Document(collection = "users")
 
 public class UserEntity {
+    @Id
     private String id;
 
     @NotBlank(message = "Name cannot be blank")

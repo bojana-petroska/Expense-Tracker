@@ -1,4 +1,4 @@
-package com.expensetracker.expense_tracker.model;
+package com.expensetracker.Expenses;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

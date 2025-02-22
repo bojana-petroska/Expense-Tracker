@@ -1,12 +1,9 @@
-package com.expensetracker.expense_tracker.service;
+package com.expensetracker.Expenses;
+
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import com.expensetracker.expense_tracker.model.ExpenseEntity;
-import com.expensetracker.expense_tracker.repository.ExpenseRepository;
-import com.expensetracker.expense_tracker.validator.ExpenseValidator;
 
 @Service
 public class ExpenseService {
@@ -26,11 +23,11 @@ public class ExpenseService {
         return (List<ExpenseEntity>) expenseRepository.findAll();
     }
 
-    public Optional<ExpenseEntity> getExpenseById(Long id) {
+    public Optional<ExpenseEntity> getExpenseById(String id) {
         return expenseRepository.findById(id);
     }
 
-    public ExpenseEntity updateExpense(Long id, ExpenseEntity expenseDetails) {
+    public ExpenseEntity updateExpense(String id, ExpenseEntity expenseDetails) {
         ExpenseValidator expenseValidator = new ExpenseValidator();
         expenseValidator.validateExpense(expenseDetails);
 
@@ -49,7 +46,7 @@ public class ExpenseService {
         }
     }
 
-    public void deleteExpense(Long id) {
+    public void deleteExpense(String id) {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
         } else {
