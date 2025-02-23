@@ -1,4 +1,4 @@
-package com.expensetracker.User;
+package com.expensetracker.user;
 
 import java.util.Optional;
 

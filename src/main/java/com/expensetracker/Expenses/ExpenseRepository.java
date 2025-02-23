@@ -1,4 +1,4 @@
-package com.expensetracker.Expenses;
+package com.expensetracker.expenses;
 
 import java.util.List;
 

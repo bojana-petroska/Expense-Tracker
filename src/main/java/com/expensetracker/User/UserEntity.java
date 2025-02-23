@@ -1,4 +1,4 @@
-package com.expensetracker.User;
+package com.expensetracker.user;
 
 import jakarta.persistence.Id;
 
@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 
 @Document(collection = "users")
@@ -26,7 +27,7 @@ public class UserEntity {
     @NotBlank(message = "Password cannot be blank")
     private String password;
 
-    @NotBlank(message = "Date cannot be blank")
+    @NotNull(message = "Date cannot be blank")
     private Date registrationDate;
 
     private List<String> expenseIds;

@@ -1,4 +1,4 @@
-package com.expensetracker.User;
+package com.expensetracker.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

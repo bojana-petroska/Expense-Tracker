@@ -1,4 +1,4 @@
-package com.expensetracker.Expenses;
+package com.expensetracker.expenses;
 
 public class ExpenseValidator {
     public void validateExpense(ExpenseEntity expense) {
