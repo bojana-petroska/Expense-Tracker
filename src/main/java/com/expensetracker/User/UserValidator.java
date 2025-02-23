@@ -1,4 +1,4 @@
-package com.expensetracker.User;
+package com.expensetracker.user;
 
 public class UserValidator {
     public void validateUserForCreation(UserEntity user) {
