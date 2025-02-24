@@ -24,42 +24,25 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserEntity user) {
-        try {
             UserEntity createdUser = userService.createUser(user);
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserEntity> getUserById(@PathVariable String id) {
-        try {
-            return userService.getUserById(id)
-                    .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-                    .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        UserEntity user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserEntity> updateUser(@PathVariable String id, @RequestBody UserEntity userDetails) {
-        try {
             UserEntity updatedUser = userService.updateUser(id, userDetails);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
-        try {
             userService.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 }

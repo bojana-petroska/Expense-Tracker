@@ -2,7 +2,7 @@ package com.expensetracker.user;
 
 import jakarta.persistence.Id;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
