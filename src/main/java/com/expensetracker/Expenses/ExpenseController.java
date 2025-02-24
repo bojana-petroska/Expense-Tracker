@@ -39,28 +39,20 @@ public class ExpenseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable String id) {
-        return expenseService.getExpenseById(id)
-                .map(expense -> new ResponseEntity<>(expense, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        ExpenseEntity expense = expenseService.getExpenseById(id);
+        return ResponseEntity.ok(expense);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExpenseEntity> updateExpense(@PathVariable String id, @RequestBody ExpenseEntity expenseDetails) {
-        try {
-            ExpenseEntity updatedExpense = expenseService.updateExpense(id, expenseDetails);
-            return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<ExpenseEntity> updateExpense(@PathVariable String id,
+            @RequestBody ExpenseEntity expenseDetails) {
+        ExpenseEntity updatedExpense = expenseService.updateExpense(id, expenseDetails);
+        return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteExpense(@PathVariable String id) {
-        try {
-            expenseService.deleteExpense(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        expenseService.deleteExpense(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -2,6 +2,8 @@ package com.expensetracker.expenses;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +25,10 @@ public class ExpenseService {
         return (List<ExpenseEntity>) expenseRepository.findAll();
     }
 
-    public Optional<ExpenseEntity> getExpenseById(String id) {
-        return expenseRepository.findById(id);
+    public ExpenseEntity getExpenseById(String id) {
+        return expenseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Expense with id: " + id + " not found"));
+
     }
 
     public ExpenseEntity updateExpense(String id, ExpenseEntity expenseDetails) {
@@ -42,7 +46,7 @@ public class ExpenseService {
 
             return expenseRepository.save(existingExpense);
         } else {
-            throw new RuntimeException("Expense with id: " + id + " not found.");
+            throw new EntityNotFoundException("Expense with id: " + id + " not found.");
         }
     }
 
@@ -50,7 +54,7 @@ public class ExpenseService {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
         } else {
-            throw new RuntimeException("Expense with id: " + id + " not found.");
+            throw new EntityNotFoundException("Expense with id: " + id + " not found.");
         }
     }
 }
